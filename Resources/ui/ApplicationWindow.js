@@ -43,11 +43,13 @@ function ApplicationWindow() {
         });
         self.add(translucentView);
 
-        if (animationsOn) {
-            translucentView.animate(Ti.UI.createAnimation({
-                opacity : 0.75,
-                duration : 1000
-            }));
+       if (animationsOn) {
+            setTimeout(function() {
+                translucentView.animate(Ti.UI.createAnimation({
+                    opacity : 0.75,
+                    duration : 2000
+                }));
+            }, 1);
         }
         gutter = gutter * 2;
     }
@@ -68,10 +70,12 @@ function ApplicationWindow() {
     self.add(webView);
 
     if (animationsOn) {
-        webView.animate(Ti.UI.createAnimation({
-            opacity : 1,
-            duration : 2000
-        }));
+        setTimeout(function() {
+            webView.animate(Ti.UI.createAnimation({
+                opacity : 1,
+                duration : 2000
+            }));
+        }, 1);
     }
     
     // Load the platform specific UI.
