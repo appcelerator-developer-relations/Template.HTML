@@ -1,5 +1,6 @@
 // Application Window Component Constructor
 function ApplicationWindow() {
+    
     // If you don't want margins around the Translucent or Web View you can set the gutter to zero.
     var gutter = Ti.Platform.displayCaps.platformWidth * 0.025;
     // The translucent view is a stylish rounded rect behind the web view.
@@ -72,9 +73,15 @@ function ApplicationWindow() {
             duration : 2000
         }));
     }
-
+    
     // Load the platform specific UI.
-    var ApplicationWindowPlatform = require('/ui/ApplicationWindowPlatform');
+    var ApplicationWindowPlatform;
+    if (Ti.Platform.osname == 'mobileweb') {
+        // Work around missing platform-specific require feature in Mobile Web.
+        ApplicationWindowPlatform = require('mobileweb/ui/ApplicationWindowPlatform');
+    } else {
+        ApplicationWindowPlatform = require('ui/ApplicationWindowPlatform');
+    }
     ApplicationWindowPlatform(self, webView, titleBarOn, drawerOn);
 
     return self;
